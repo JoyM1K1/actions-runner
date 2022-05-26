@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  runner:
+    restart: unless-stopped
+    image: myoung34/github-runner:latest
+    environment:
+      RUNNER_NAME: "Joy's M1 Macbook"
+      RUNNER_SCOPE: repo
+      REPO_URL: "${REPO_URL}"
+      LABELS: self-hosted,macOS,x64
+      ACCESS_TOKEN: "${ACCESS_TOKEN}"
+      RUNNER_WORKDIR: /tmp/runner/work
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - '/tmp/runner:/tmp/runner'
